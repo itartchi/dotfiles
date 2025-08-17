@@ -33,6 +33,27 @@ function MediaPlayer({ player }: { player: Mpris.Player }) {
             : ""
     )
 
+    const img = () => {
+        if (playerType == "widget") return <box></box>;
+    
+        return (
+          <box
+            valign={Gtk.Align.CENTER}
+            child={
+              <box
+                className="img"
+                css={bind(player, "coverArt").as(
+                  (p) => `
+                        background-image: url('${p}');
+                        box-shadow: 0 0 5px 0 0;
+                    `
+                )}
+              />
+            }
+          ></box>
+        );
+      };
+
     return <box
         className="mediaPlayer"
         vertical={true}>
