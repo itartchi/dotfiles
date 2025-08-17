@@ -1,0 +1,17 @@
+@use "../variables" as vars;
+
+.window {
+    background-color: vars.$bg;
+    border-radius: 8px;
+    border-color: vars.$border;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.focusedWindow {
+    background-color: vars.$bg;
+    border-radius: 8px;
+    border-color: vars.$border;
+    border-width: 1px;
+    border-style: solid;
+}
