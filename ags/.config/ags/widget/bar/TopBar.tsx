@@ -4,7 +4,7 @@ import {
     BluetoothButton,
     ClockButton,
     MenuButton,
-    NetworkButton,
+    VolumeButton,
     NotificationMenuButton,
     SysTray,
     Workspaces
@@ -37,13 +37,9 @@ export default function () {
                 
             </box>
             <box halign={Gtk.Align.END}>
-                {/* <ScreenRecordingButton css={iconCss}/>
-                <VolumeButton css={iconCss}/>
-                <MicrophoneButton css={iconCss}/> */}
                 <SysTray />
                 <BluetoothButton css={iconCss}/>
-                {/* <VpnButton css={iconCss}/> */}
-                <NetworkButton css={iconCss}/>
+                {/* <NetworkButton css={iconCss}/> */}
                 <NotificationMenuButton/>
                 <BatteryButton css={iconCss}/>
                 <ClockButton css={""} singleLine={true}/>

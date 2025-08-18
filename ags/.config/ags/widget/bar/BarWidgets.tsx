@@ -91,32 +91,6 @@ export function ClockButton({css, singleLine}: { css: string, singleLine: boolea
     </button>
 }
 
-export function ScreenRecordingButton({css}: { css: string }) {
-    return <button
-        className="warningIconButton"
-        css={css}
-        label=""
-        visible={isRecording()}
-        onClicked={() => {
-            execAsync("pkill wf-recorder")
-        }}/>
-}
-
-export function VolumeButton({css}: { css: string }) {
-    const defaultSpeaker = Wp.get_default()!.audio.default_speaker
-
-    const speakerVar = Variable.derive([
-        bind(defaultSpeaker, "description"),
-        bind(defaultSpeaker, "volume"),
-        bind(defaultSpeaker, "mute")
-    ])
-
-    return <label
-        css={css}
-        className="iconButton"
-        label={speakerVar(() => getVolumeIcon(defaultSpeaker))}/>
-}
-
 export function MicrophoneButton({css}: { css: string }) {
     const {defaultMicrophone} = Wp.get_default()!.audio
 
