@@ -27,3 +27,6 @@ alias q 'qs -c ii'
 #   set_color cyan; echo (pwd)
 #   set_color green; echo '> '
 # end
+
+# Created by `pipx` on 2025-09-01 17:09:23
+set PATH $PATH /home/plag/.local/bin
