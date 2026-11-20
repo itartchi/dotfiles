@@ -1,36 +1,33 @@
-function fish_prompt -d "Write out the prompt"
-    # This shows up as USER@HOST /home/user/ >, with the directory colored
-    # $USER and $hostname are set by fish, so you can just use them
-    # instead of using `whoami` and `hostname`
-    printf '%s@%s %s%s%s > ' $USER $hostname \
-        (set_color $fish_color_cwd) (prompt_pwd) (set_color normal)
-end
-
-function fish_greeting
-    fastfetch
-end
-
+# Commands to run in interactive sessions can go here
 if status is-interactive
-    # Commands to run in interactive sessions can go here
+    # No greeting
     set fish_greeting
 
-end
-
-starship init fish | source
-if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
-    cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
-end
-
-alias pamcan pacman
-alias ls 'eza --icons'
-alias clear "printf '\033[2J\033[3J\033[1;1H'"
-alias q 'qs -c ii'
+    # Use starship
+    function starship_transient_prompt_func
+        starship module character
+    end
+    if test "$TERM" != "linux"
+        starship init fish | source
+        enable_transience
+    end
     
+    # Colors
+    if test -f ~/.local/state/quickshell/user/generated/terminal/sequences.txt
+        cat ~/.local/state/quickshell/user/generated/terminal/sequences.txt
+    end
 
-# function fish_prompt
-#   set_color cyan; echo (pwd)
-#   set_color green; echo '> '
-# end
-
-# Created by `pipx` on 2025-09-01 17:09:23
-set PATH $PATH /home/plag/.local/bin
+    # Aliases
+    # kitty doesn't clear properly so we need to do this weird printing
+    alias clear "printf '\033[2J\033[3J\033[1;1H'"
+    alias celar "printf '\033[2J\033[3J\033[1;1H'"
+    alias claer "printf '\033[2J\033[3J\033[1;1H'"
+    alias pamcan pacman
+    alias q 'qs -c ii'
+    if test "$TERM" != "linux"
+        alias ls 'eza --icons=auto'
+    end
+    if test "$TERM" = "xterm-kitty"
+        alias ssh 'kitten ssh'
+    end
+end
